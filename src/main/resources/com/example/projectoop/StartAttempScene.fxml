@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="600.0" style="-fx-background-color: WHITE;" styleClass="settingPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerStartAttemp">
+   <children>
+      <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: WHITE;" styleClass="settingPane" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
+         <children>
+            <Label layoutX="14.0" layoutY="8.0" text="Start Attemp">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="539.0" layoutY="8.0" mnemonicParsing="false" onAction="#cancelCLick" prefHeight="35.0" prefWidth="37.0" style="-fx-background-color: WHITE;" text="X" />
+         </children>
+      </Pane>
+      <Label layoutX="37.0" layoutY="68.0" text="Time Limit" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="114.0" text="Label" />
+      <Button fx:id="okButton" layoutX="410.0" layoutY="191.0" mnemonicParsing="false" onAction="#StartClick" style="-fx-background-color: red;" text="START ATTEMP" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelButton" layoutX="522.0" layoutY="191.0" mnemonicParsing="false" onAction="#cancelCLick" style="-fx-background-color: #1E90FF;" text="CANCEL" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

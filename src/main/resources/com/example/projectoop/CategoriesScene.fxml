@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerCategories">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane id="Pane" prefHeight="152.0" prefWidth="700.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="-8.0" layoutY="-4.0" prefHeight="36.0" prefWidth="1010.0" style="-fx-background-color: #1E90FF;" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="-5.0">
+                     <children>
+                        <Button layoutX="20.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #1E90FF;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Image/menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Label fx:id="MenuBack" layoutX="20.0" layoutY="50.0" text="IT" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="850.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToCreateQuizScene" prefWidth="150.0" style="-fx-background-color: #1E90FF;" text="TURN ON EDDITING" textFill="WHITE" AnchorPane.rightAnchor="1.9999999999999716" AnchorPane.topAnchor="115.0">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label id="setting" fx:id="Menu" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="17.199999999999953" AnchorPane.topAnchor="35.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/—Pngtree—vector%20setting%20icon_3767853.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label id="setting" fx:id="MenuClose" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="18.199999999999953" AnchorPane.topAnchor="35.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/—Pngtree—vector%20setting%20icon_3767853.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="107.0" text="Home  /  My courses  /  Thi Cuối kỳ" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane id="Pane" prefHeight="523.0" prefWidth="990.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Label layoutX="30.0" layoutY="60.0" text="Add category" textFill="RED">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="12.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Image/Screenshot%202023-07-02%20225044.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="100.0" text="Parent Category">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="485.0" layoutY="100.0" prefWidth="150.0" />
+                        <Label layoutX="30.0" layoutY="150.0" text="Name">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="Categoryname" alignment="TOP_LEFT" layoutX="485.0" layoutY="150.0" prefWidth="300.0" />
+                        <Label layoutX="30.0" layoutY="200.0" text="Info">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="370.0" text="ID number">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="IDnumber" layoutX="485.0" layoutY="370.0" />
+                        <Button layoutX="485.0" layoutY="449.0" mnemonicParsing="false" style="-fx-background-color: RED;" text="ADD CATEGORY" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="452.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/dauhoi.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="IDwarning" fitHeight="23.0" fitWidth="21.0" layoutX="452.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="namewarning" fitHeight="23.0" fitWidth="21.0" layoutX="452.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/warning.png" />
+                           </image>
+                        </ImageView>
+                        <TextArea fx:id="CategoryInfo" layoutX="485.0" layoutY="182.0" prefHeight="174.0" prefWidth="304.0" />
+                     </children></Pane>
+                  <Pane prefHeight="40.0" prefWidth="955.0" styleClass="settingPane" stylesheets="@style.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Button layoutX="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Export" textFill="ROYALBLUE">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="settingbutton" />
+                              <String fx:value="buttonNotChoose" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="200.0" mnemonicParsing="false" onAction="#switchToSceneImport" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Import" textFill="ROYALBLUE">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="settingbutton" />
+                              <String fx:value="buttonNotChoose" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Categories">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="settingbutton" />
+                              <String fx:value="buttonChoose" />
+                           </styleClass>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#switchToSceneQuestion" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Questions" textFill="ROYALBLUE">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="settingbutton" />
+                              <String fx:value="buttonNotChoose" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

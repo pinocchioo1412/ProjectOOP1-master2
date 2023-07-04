@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerCreateQuiz">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane id="Pane" prefHeight="152.0" prefWidth="700.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="-8.0" layoutY="-4.0" prefHeight="36.0" prefWidth="1010.0" style="-fx-background-color: #1E90FF;" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="-5.0">
+                     <children>
+                        <Button layoutX="20.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #1E90FF;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Image/menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Label fx:id="MenuBack" layoutX="20.0" layoutY="50.0" text="IT" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label id="setting" fx:id="Menu" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="17.199999999999953" AnchorPane.topAnchor="35.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/banhxe.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label id="setting" fx:id="MenuClose" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="18.199999999999953" AnchorPane.topAnchor="35.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/banhxe.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="107.0" text="Home  /  My courses  /  Thi Cuối kỳ" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane id="Pane" prefHeight="523.0" prefWidth="1000.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Label layoutX="22.0" layoutY="14.0" text="Adding a new Quiz" textFill="RED">
+                           <font>
+                              <Font name="Times New Roman" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="45.0" prefHeight="19.0" prefWidth="83.0" text="General" textFill="RED">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="12.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Image/tamgiacnguoc2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="80.0" text="Name" />
+                        <TextField fx:id="quizname" alignment="TOP_LEFT" layoutX="485.0" layoutY="80.0" prefWidth="200.0" />
+                        <Label layoutX="32.0" layoutY="110.0" text="Descripton" />
+                        <TextField alignment="TOP_LEFT" layoutX="485.0" layoutY="110.0" prefHeight="150.0" prefWidth="300.0" />
+                        <CheckBox layoutX="485.0" layoutY="265.0" mnemonicParsing="false" text="Display description on count page" />
+                        <Label layoutX="32.0" layoutY="290.0" prefHeight="19.0" prefWidth="106.0" text="Timing" textFill="RED">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Image/tamgiacnguoc2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="320.0" text="Open the quiz" />
+                        <Label layoutX="32.0" layoutY="360.0" text="Close the quiz" />
+                        <Label layoutX="32.0" layoutY="400.0" text="Time limit" />
+                        <Label layoutX="32.0" layoutY="440.0" text="When the time expires" />
+                        <TextField layoutX="485.0" layoutY="400.0" prefHeight="25.0" prefWidth="50.0" />
+                        <ComboBox fx:id="typeoftime" layoutX="540.0" layoutY="400.0" prefHeight="25.0" prefWidth="100.0" />
+                        <ComboBox fx:id="whenthetimeexpires" layoutX="485.0" layoutY="440.0" prefWidth="250.0" />
+                        <Button layoutX="485.0" layoutY="490.0" mnemonicParsing="false" onAction="#saveClickEvent" style="-fx-background-color: red;" text="CREATE" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="555.0" layoutY="490.0" mnemonicParsing="false" onAction="#cancelClickEvent" style="-fx-background-color: #1E90FF;" text="CANCEL" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <CheckBox fx:id="enable1" layoutX="845.0" layoutY="320.0" mnemonicParsing="false" onAction="#openquiz" text="Enable" />
+                        <CheckBox fx:id="enable2" layoutX="845.0" layoutY="360.0" mnemonicParsing="false" onAction="#closequiz" onMouseClicked="#closequiz" text="Enable" />
+                        <CheckBox fx:id="enable3" layoutX="650.0" layoutY="400.0" mnemonicParsing="false" text="Enable" />
+                        <HBox fx:id="openthequiz" layoutX="440.0" layoutY="313.0" prefHeight="31.0" prefWidth="391.0" spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="days" disable="true" prefHeight="25.0" prefWidth="0.0" promptText="1" />
+                              <ComboBox fx:id="months" disable="true" prefHeight="26.0" prefWidth="97.0" promptText="January" />
+                              <ComboBox fx:id="years" disable="true" prefHeight="26.0" prefWidth="78.0" promptText="2023" />
+                              <ComboBox fx:id="hours" disable="true" prefHeight="26.0" prefWidth="62.0" promptText="0" />
+                              <ComboBox fx:id="minutes" disable="true" prefHeight="26.0" prefWidth="58.0" promptText="0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="closethequiz" layoutX="440.0" layoutY="352.0" prefHeight="31.0" prefWidth="391.0" spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="days1" disable="true" prefHeight="25.0" prefWidth="0.0" promptText="1" />
+                              <ComboBox fx:id="months1" disable="true" prefHeight="26.0" prefWidth="97.0" promptText="January" />
+                              <ComboBox fx:id="years1" disable="true" prefHeight="26.0" prefWidth="78.0" promptText="2023" />
+                              <ComboBox fx:id="hours1" disable="true" prefHeight="26.0" prefWidth="62.0" promptText="0" />
+                              <ComboBox fx:id="minutes1" disable="true" prefHeight="26.0" prefWidth="58.0" promptText="0" />
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="namewarning" fitHeight="25.0" fitWidth="18.0" layoutX="460.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Image/warning.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
