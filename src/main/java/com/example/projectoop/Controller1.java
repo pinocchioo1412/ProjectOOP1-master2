@@ -114,8 +114,7 @@ public class Controller1  implements Initializable {
         List<String> labelValues = SaveQuiz.getLabelValues();
         for (String value : labelValues) {
             Button button = new Button(value);
-
-            Quizbox.getChildren().add(button); // Thêm button với 1 quiz vào quizbox
+            Quizbox.getChildren().add(button); // Thêm button với 1 quiz vào quizbox nma k biết add action
         }
     }
 }
