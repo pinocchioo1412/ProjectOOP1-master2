@@ -19,13 +19,6 @@
                         <Button layoutX="20.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #1E90FF;" />
                      </children>
                   </Pane>
-                  <Label fx:id="MenuBack" layoutX="20.0" layoutY="50.0" text="IT" textFill="RED">
-                     <font>
-                        <Font name="Times New Roman" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label id="setting" fx:id="Menu" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="17.199999999999953" AnchorPane.topAnchor="35.0" />
-                  <Label id="setting" fx:id="MenuClose" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="18.199999999999953" AnchorPane.topAnchor="35.0" />
                   <Label layoutX="20.0" layoutY="107.0" text="Home  /  My courses  /  Thi Cuối kỳ" textFill="RED">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
