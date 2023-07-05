@@ -6,15 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -34,6 +37,8 @@ public class Controller1  implements Initializable {
     private Scene scene;
 
     private Parent root;
+    @FXML
+    private VBox Quizbox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -105,5 +110,12 @@ public class Controller1  implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void initialize() {
+        List<String> labelValues = SaveQuiz.getLabelValues();
+        for (String value : labelValues) {
+            Button button = new Button(value);
 
+            Quizbox.getChildren().add(button); // Thêm button với 1 quiz vào quizbox
+        }
+    }
 }

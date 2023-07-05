@@ -34,10 +34,10 @@ public class ControllerQuestionScene {
     public void initialize(){
         CategoryBox.setItems(Categoreis);
         CategoryBox.setValue("Default");
-        String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-        String USER_NAME = "oop";
-        String PASSWORD = "123";
-        String query ="SELECT question_name FROM question";
+        String DB_URL = "jdbc:sqlserver://localhost:1433;encrypt=true;";
+        String USER_NAME = "pinocchio";
+        String PASSWORD = "pinocchio1412";
+        String query ="SELECT CATEGORY_ID FROM CATEGORY";
         Statement stm =null;
         try {
             // Tạo kết nối

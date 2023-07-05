@@ -40,6 +40,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.Controller1">
@@ -136,15 +137,22 @@
                <children>
                   <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
-                        <Button layoutX="34.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchToAttemptQuizScene" style="-fx-background-color: ffffff;" text="Thi thử giữa kì môn Công nghệ">
-                           <graphic>
-                              <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../Image/iconchuv.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <VBox fx:id="Quizbox" layoutX="34.0" layoutY="40.0" prefHeight="369.0" prefWidth="487.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#switchToAttemptQuizScene" prefHeight="30.0" prefWidth="435.0" style="-fx-background-color: ffffff;" text="Thi thử giữa kì môn Công nghệ">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Image/iconchuv.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children></Pane>
                </children>
             </AnchorPane>

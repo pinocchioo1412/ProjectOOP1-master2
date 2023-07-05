@@ -113,7 +113,7 @@ public class ControllerCreateQuiz {
             }
         });
     }
-    public void saveClickEvent (ActionEvent event) throws IOException {
+    public void Create (ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Giaodien1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -143,6 +143,23 @@ public class ControllerCreateQuiz {
             years1.setDisable(false);
             hours1.setDisable(false);
             minutes1.setDisable(false);
+        }
+    }
+    @FXML
+    void create(ActionEvent event) {
+        try {
+            Stage ag0r1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Giaodien1.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            ag0r1.setScene(scene);
+            ag0r1.show();
+            Controller1 controller = loader.getController();
+            SaveQuiz.addLabelValue(quizname.getText());
+            controller.initialize();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
