@@ -1,13 +1,7 @@
 package com.example.projectoop;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,75 +9,30 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.util.Duration;
 
-import java.io.IOException;
 import java.sql.*;
-import java.util.Objects;
 
-public class ControllerDoingQuizScene {
+public class ControllerFinishQuizScene {
     private Stage stage;
-    private Scene  scene;
+    private Scene scene;
     private Node anyNode;
-    @FXML
-    private Label timerLabel;
-    @FXML
-    private Label myLabel;
     @FXML
     private AnchorPane question;
     @FXML
     private AnchorPane navigation;
 
-    private int countdownSeconds;
-
-    public void setCountdownSeconds(int x){
-        this.countdownSeconds=x;
-    }
-    public void initialize() throws IOException {
-        int x=8;
-        setCountdownSeconds(x);
-        timerLabel.setText(formatTime(countdownSeconds));
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            countdownSeconds--;
-            if(countdownSeconds >= 0) {
-                timerLabel.setText(formatTime(countdownSeconds));
-            }
-            else{
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FinishQuizScene.fxml")));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                stage = (Stage) myLabel.getScene().getWindow();
-                Scene scene1 = new Scene(root);
-                stage.setScene(scene1);
-                stage.show();
-            }
-        }));
-        timeline.setCycleCount(x+1);
-        timeline.play();
-
+    public void initialize(){
         Pane questionPane = createQuestionPane(1);
-        questionPane.setLayoutY(10);
+        questionPane.setLayoutY(150);
         questionPane.setLayoutX(100);
         Pane numberPane = createQuestionButton(1);
         numberPane.setLayoutX(20);
         numberPane.setLayoutY(50);
         Pane NumberPane = createQuestionNumberPane(1);
         NumberPane.setLayoutX(10);
-        NumberPane.setLayoutY(10);
+        NumberPane.setLayoutY(150);
         question.getChildren().addAll(questionPane,NumberPane);
         navigation.getChildren().add(numberPane);
-    }
-
-
-    private String formatTime(int seconds) {
-        int hours = seconds/3600;
-        int minutes = seconds%3600/60;
-        int secs = seconds % 60;
-        return String.format("%02d:%02d:%02d",hours, minutes, secs);
     }
     public Pane createQuestionButton(int x) {
         Pane numberPane = new Pane();
@@ -185,5 +134,3 @@ public class ControllerDoingQuizScene {
         return questionNumberPane;
     }
 }
-
-

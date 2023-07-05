@@ -23,7 +23,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="114.0" text="Label" />
+      <Label fx:id="label" layoutX="50.0" layoutY="105.0" text="Label" />
       <Button fx:id="okButton" layoutX="410.0" layoutY="191.0" mnemonicParsing="false" onAction="#StartClick" style="-fx-background-color: red;" text="START ATTEMP" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="12.0" />

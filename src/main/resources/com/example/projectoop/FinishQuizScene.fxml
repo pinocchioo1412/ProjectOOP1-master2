@@ -3,12 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerFinishQuizScene">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -24,6 +25,11 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="MenuBack" layoutX="20.0" layoutY="49.0" text="IT" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="30.0" />
+                     </font>
+                  </Label>
                </children>
                <BorderPane.margin>
                   <Insets left="5.0" right="5.0" />
@@ -34,16 +40,115 @@
             </AnchorPane>
          </top>
          <center>
-            <AnchorPane id="Pane" prefHeight="548.0" prefWidth="748.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER" />
+            <AnchorPane id="Pane" prefHeight="548.0" prefWidth="748.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="515.0" prefWidth="766.0">
+                    <content>
+                      <AnchorPane fx:id="question" minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="754.0" style="-fx-background-color: white;">
+                           <children>
+                              <Pane layoutX="20.0" layoutY="20.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="55.0" layoutY="1.0" text="Started on" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="20.0" layoutY="39.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: ffffff;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="1.0" text="State" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="20.0" layoutY="58.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="40.0" layoutY="1.0" text="Completed on" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="20.0" layoutY="76.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label layoutX="55.0" layoutY="1.0" text="Time taken" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="20.0" layoutY="95.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="88.0" layoutY="1.0" text="Mark" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="20.0" layoutY="114.0" prefHeight="19.0" prefWidth="128.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="1.0" text="Grade" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="148.0" layoutY="20.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
+                              <Pane layoutX="148.0" layoutY="39.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="40.0" layoutY="1.0" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="148.0" layoutY="114.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="40.0" layoutY="1.0" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="148.0" layoutY="76.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
+                                 <children>
+                                    <Label layoutX="40.0" layoutY="1.0" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="148.0" layoutY="95.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
+                              <Pane layoutX="148.0" layoutY="58.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children></AnchorPane>
          </center>
          <right>
-            <AnchorPane prefHeight="548.0" prefWidth="220.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="navigation" prefHeight="548.0" prefWidth="220.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="32.0" layoutY="20.0" text="Quiz navigation" textFill="RED">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Button layoutX="23.0" layoutY="497.0" mnemonicParsing="false" style="-fx-background-color: RED;" text="EXPORT FILE" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </right>

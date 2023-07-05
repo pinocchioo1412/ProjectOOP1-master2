@@ -24,7 +24,9 @@ public class ControllerStartAttemp {
     Label label;
 
     public void initialize(){
-
+        label.setPrefSize(500, 60);
+        label.setWrapText(true);
+        label.setText("Your attempt will have a time limit of 1 hour. When you start, the timer will begin to count down and can not ba paused. You must finish your attempt before it expires. Are you sure you wish start now");
     }
     public void setStage(Stage stage) {
         this.stage = stage;
