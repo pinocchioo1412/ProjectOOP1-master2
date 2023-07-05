@@ -7,6 +7,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,7 +27,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../Image/menu.png" />
+                                    <Image url="@../../../../../../../ProjectOOP/src/main/resources/Image/menu.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -43,20 +44,20 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Label id="setting" fx:id="Menu" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="17.199999999999953" AnchorPane.topAnchor="35.0">
+                  <Label id="setting" fx:id="Menu" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@../../../../../../../ProjectOOP/src/main/resources/com/example/projectoop/style.css" AnchorPane.rightAnchor="17.199999999999953" AnchorPane.topAnchor="35.0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../Image/—Pngtree—vector%20setting%20icon_3767853.png" />
+                              <Image url="@../../../../../../../ProjectOOP/src/main/resources/Image/—Pngtree—vector%20setting%20icon_3767853.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label id="setting" fx:id="MenuClose" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@style.css" AnchorPane.rightAnchor="18.199999999999953" AnchorPane.topAnchor="35.0">
+                  <Label id="setting" fx:id="MenuClose" layoutX="950.0" layoutY="35.0" prefHeight="18.0" prefWidth="14.0" styleClass="setting" stylesheets="@../../../../../../../ProjectOOP/src/main/resources/com/example/projectoop/style.css" AnchorPane.rightAnchor="18.199999999999953" AnchorPane.topAnchor="35.0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../Image/—Pngtree—vector%20setting%20icon_3767853.png" />
+                              <Image url="@../../../../../../../ProjectOOP/src/main/resources/Image/—Pngtree—vector%20setting%20icon_3767853.png" />
                            </image>
                            <viewport>
                               <Rectangle2D />
@@ -79,7 +80,7 @@
             </AnchorPane>
          </top>
          <center>
-            <AnchorPane id="Pane" prefHeight="523.0" prefWidth="990.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <AnchorPane id="Pane" prefHeight="523.0" prefWidth="990.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@../../../../../../../ProjectOOP/src/main/resources/com/example/projectoop/style.css" BorderPane.alignment="CENTER">
                <children>
                   <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
@@ -105,8 +106,14 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="CategoryBox" layoutX="144.0" layoutY="104.0" prefWidth="150.0" styleClass="ComboBox" stylesheets="@style.css" />
-                     </children></Pane>
+                        <ComboBox fx:id="CategoryBox" layoutX="144.0" layoutY="104.0" prefWidth="150.0" styleClass="ComboBox" stylesheets="@../../../../../../../ProjectOOP/src/main/resources/com/example/projectoop/style.css" />
+                        <ScrollPane layoutX="4.0" layoutY="263.0" prefHeight="200.0" prefWidth="972.0">
+                           <content>
+                              <AnchorPane fx:id="questionBank" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="968.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
                   <Pane prefHeight="40.0" prefWidth="955.0" styleClass="settingPane" stylesheets="@style.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <children>
                         <Button layoutX="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Export" textFill="ROYALBLUE">

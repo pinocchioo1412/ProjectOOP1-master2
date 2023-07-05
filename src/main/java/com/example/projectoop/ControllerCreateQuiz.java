@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerCreateQuiz implements Initializable  {
+public class ControllerCreateQuiz {
     private ObservableList<String> Days = FXCollections.observableArrayList("1", "2", "3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
     private ObservableList<String> Months = FXCollections.observableArrayList("January", "Februarry", "March", "April", "May", "June", "July", "August", "September", "Octorber", "November", "December");
     private ObservableList<String> Years = FXCollections.observableArrayList("2023", "2024", "2025", "2026", "2027");
@@ -105,6 +105,13 @@ public class ControllerCreateQuiz implements Initializable  {
         setHours();
         setTypeoftimes();
         setWhenthetimeexpires();
+        quizname.textProperty().addListener((Observable, oldvalue, newValue) -> {
+            if (newValue.isEmpty()) {
+                namewarning.setVisible(true);
+            } else {
+                namewarning.setVisible(false);
+            }
+        });
     }
     public void saveClickEvent (ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Giaodien1.fxml"));
@@ -138,13 +145,5 @@ public class ControllerCreateQuiz implements Initializable  {
             minutes1.setDisable(false);
         }
     }
-    public void initialize(URL arg3, ResourceBundle arg4) {
-        quizname.textProperty().addListener((Observable, oldvalue, newValue) -> {
-            if (newValue.isEmpty()) {
-                namewarning.setVisible(true);
-            } else {
-                namewarning.setVisible(false);
-            }
-        });
-    }
+
 }

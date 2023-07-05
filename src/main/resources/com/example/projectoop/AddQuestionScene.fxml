@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerAddQuestionScene">
    <children>
       <Label layoutX="25.0" layoutY="20.0" text="Add from the question bank at the end" textFill="RED">
          <font>
@@ -18,7 +17,7 @@
       </Label>
       <ScrollPane layoutX="22.0" layoutY="116.0" prefHeight="577.0" prefWidth="865.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="645.0" prefWidth="840.0">
+          <AnchorPane fx:id="questionBank" minHeight="0.0" minWidth="0.0" prefHeight="645.0" prefWidth="840.0">
                <children>
                   <Label layoutX="10.0" layoutY="20.0" text="Select a category :">
                      <font>

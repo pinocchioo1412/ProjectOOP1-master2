@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerDoingQuizScene">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -41,12 +41,21 @@
             </AnchorPane>
          </top>
          <center>
-            <AnchorPane id="Pane" prefHeight="548.0" prefWidth="748.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER" />
+            <AnchorPane id="Pane" prefHeight="548.0" prefWidth="748.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="610.0" layoutY="14.0" prefHeight="35.0" prefWidth="156.0" styleClass="Pane-solid-border" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="9.0" text="Time left :" />
+                        <Label fx:id="timerLabel" layoutX="78.0" layoutY="9.0" text="Label" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
          </center>
          <right>
             <AnchorPane prefHeight="548.0" prefWidth="220.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="32.0" layoutY="20.0" text="Quiz navigation" textFill="RED">
+                  <Label fx:id="myLabel" layoutX="32.0" layoutY="20.0" text="Quiz navigation" textFill="RED">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
