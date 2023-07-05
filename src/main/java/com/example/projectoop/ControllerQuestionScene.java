@@ -37,7 +37,7 @@ public class ControllerQuestionScene {
         String DB_URL = "jdbc:sqlserver://localhost:1433;encrypt=true;";
         String USER_NAME = "pinocchio";
         String PASSWORD = "pinocchio1412";
-        String query ="SELECT CATEGORY_ID FROM CATEGORY";
+        String query ="SELECT CATEGORY_ID,CATEGORY_NAME FROM CATEGORY";
         Statement stm =null;
         try {
             // Tạo kết nối
@@ -45,14 +45,34 @@ public class ControllerQuestionScene {
             // Thực hiện các truy vấn SQL
             stm = conn.createStatement();
             ResultSet rs =stm.executeQuery(query);
-            while(rs.next()){
-                String question_name = rs.getNString("question_name");
-                Pane question1 =createQuestionPane(question_name);
-                questionBank.setPrefSize(questionBank.getMaxWidth(),questionBank.getHeight()+30);
-                questionBank.getChildren().add(question1);
-                question1.setLayoutY(this.height);
-                this.height=this.height+30;
+            while (rs.next()){
+                String category_name =rs.getNString("CATEGORY_NAME");
+                addCategory("category_name");
             }
+            CategoryBox.setItems(Categoreis);
+            CategoryBox.setValue("Default");
+            CategoryBox.setOnAction(event -> {
+                String selectedCategory = CategoryBox.getValue();
+                String query1 ="SELECT QUESTION_NAME FROM QUESTION WHERE CATEGORY_ID IN" +
+                        "(SELECT CATEGORY_ID FROM CATEGORY WHERE CATEGORY_NAME=" + selectedCategory +")";
+                Statement stm1 =null;
+                try {
+                    stm1 = conn.createStatement();
+                    ResultSet rs1=stm1.executeQuery(query1);
+                    while(rs1.next()){
+                        String question_name = rs1.getNString("QUESTION_NAME");
+                        Pane question1 =createQuestionPane(question_name);
+                        questionBank.setPrefSize(questionBank.getMaxWidth(),questionBank.getHeight()+30);
+                        questionBank.getChildren().add(question1);
+                        question1.setLayoutY(this.height);
+                        this.height=this.height+30;
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
+
             // Đóng kết nối
             conn.close();
         } catch (SQLException e) {
