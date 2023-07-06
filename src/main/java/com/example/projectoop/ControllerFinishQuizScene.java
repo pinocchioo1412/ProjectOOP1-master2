@@ -101,7 +101,7 @@ public class ControllerFinishQuizScene {
             stm2 = conn.createStatement();
             ResultSet rs2 = stm2.executeQuery(query2);
             while (rs2.next()) {
-                String answer_name = rs2.getNString("answer_name");
+                String answer_name = rs2.getNString("answer_text");
                 question.addOption(answer_name);
             }
             question.setQuestionPane();

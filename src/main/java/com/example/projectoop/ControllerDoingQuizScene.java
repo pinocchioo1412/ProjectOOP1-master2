@@ -132,8 +132,8 @@ public class ControllerDoingQuizScene {
     }
     public Pane createQuestionPane(int question_id) throws SQLException{
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-        String USER_NAME = "pinocchio";
-        String PASSWORD = "pinocchio1412";
+        String USER_NAME = "oop";
+        String PASSWORD = "123";
         String query1 ="SELECT QUESTION_NAME FROM question WHERE QUESTION_ID ="+question_id;
         String query2="select * from answer where QUESTION_ID = " +question_id;
         Statement stm1 =null;
@@ -150,7 +150,7 @@ public class ControllerDoingQuizScene {
                 stm2 = conn.createStatement();
                 ResultSet rs2 = stm2.executeQuery(query2);
                 while (rs2.next()) {
-                    String answer_name = rs2.getNString("answer_name");
+                    String answer_name = rs2.getNString("answer_text");
                     question.addOption(answer_name);
                 }
                 question.setQuestionPane();

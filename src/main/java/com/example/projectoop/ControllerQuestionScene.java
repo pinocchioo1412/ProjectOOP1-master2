@@ -35,8 +35,8 @@ public class ControllerQuestionScene {
         CategoryBox.setItems(Categoreis);
         CategoryBox.setValue("Default");
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-        String USER_NAME = "pinocchio";
-        String PASSWORD = "pinocchio1412";
+        String USER_NAME = "oop";
+        String PASSWORD = "123";
         String query ="SELECT CATEGORY_ID,CATEGORY_NAME FROM CATEGORY";
         Statement stm =null;
         try {
@@ -47,14 +47,19 @@ public class ControllerQuestionScene {
             ResultSet rs =stm.executeQuery(query);
             while (rs.next()){
                 String category_name =rs.getNString("CATEGORY_NAME");
-                addCategory("category_name");
+                System.out.println(category_name);
+                addCategory(category_name);
             }
             CategoryBox.setItems(Categoreis);
             CategoryBox.setValue("Default");
             CategoryBox.setOnAction(event -> {
+                this.height=0;
                 String selectedCategory = CategoryBox.getValue();
+                questionBank.lookupAll("*").forEach(node -> {
+                    questionBank.getChildren().remove(node);
+                });
                 String query1 ="SELECT QUESTION_NAME FROM QUESTION WHERE CATEGORY_ID IN" +
-                        "(SELECT CATEGORY_ID FROM CATEGORY WHERE CATEGORY_NAME=" + selectedCategory +")";
+                        "(SELECT CATEGORY_ID FROM CATEGORY WHERE CATEGORY_NAME='"+selectedCategory+"')";
                 Statement stm1 =null;
                 try {
                     stm1 = conn.createStatement();
@@ -72,9 +77,6 @@ public class ControllerQuestionScene {
                 }
 
             });
-
-            // Đóng kết nối
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
