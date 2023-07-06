@@ -1,6 +1,7 @@
 package com.example.projectoop;
 
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,10 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.image.Image;
 import javafx.event.ActionEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -114,6 +118,25 @@ public class Controller1  implements Initializable {
         List<String> labelValues = SaveQuiz.getLabelValues();
         for (String value : labelValues) {
             Button button = new Button(value);
+
+            Image img = new Image("C:\\Users\\admin\\Desktop\\project here\\OOP project\\ProjectOOP1-master\\src\\main\\resources\\Image\\iconchuv.png");
+            ImageView view = new ImageView(img);
+            view.setFitHeight(26);
+            view.setFitWidth(21);
+            view.setPreserveRatio(true);
+            button.setStyle("-fx-background-color: #ffffff ");
+//            button.setPrefHeight(263);
+//            button.setPrefWidth(33);
+            button.setGraphic(view);
+            button.setOnAction(event -> {
+                try {
+                    switchToAttemptQuizScene(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Xử lý ngoại lệ theo nhu cầu của bạn
+                }
+            });
+
             Quizbox.getChildren().add(button); // Thêm button với 1 quiz vào quizbox nma k biết add action
         }
     }

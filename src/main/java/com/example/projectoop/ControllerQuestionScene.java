@@ -34,7 +34,7 @@ public class ControllerQuestionScene {
     public void initialize(){
         CategoryBox.setItems(Categoreis);
         CategoryBox.setValue("Default");
-        String DB_URL = "jdbc:sqlserver://localhost:1433;encrypt=true;";
+        String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "pinocchio";
         String PASSWORD = "pinocchio1412";
         String query ="SELECT CATEGORY_ID,CATEGORY_NAME FROM CATEGORY";

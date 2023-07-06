@@ -112,10 +112,10 @@ public class ControllerDoingQuizScene {
     public Pane createQuestionPane(int question_id){
         Pane question_Pane = new Pane();
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-        String USER_NAME = "oop";
-        String PASSWORD = "123";
-        String query1 ="SELECT question_name FROM question WHERE question_id ="+question_id;
-        String query2="select * from answer where question_id = " +question_id;
+        String USER_NAME = "pinocchio";
+        String PASSWORD = "pinocchio1412";
+        String query1 ="SELECT QUESTION_NAME FROM question WHERE QUESTION_ID ="+question_id;
+        String query2="select * from answer where QUESTION_ID = " +question_id;
         Statement stm1 =null;
         Statement stm2=null;
         try {
