@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -115,8 +114,6 @@ public class Controller1  implements Initializable {
         List<String> labelValues = SaveQuiz.getLabelValues();
         for (String value : labelValues) {
             Button button = new Button(value);
-            button.setStyle("-fx-backgrouNd-color: white");
-
             Quizbox.getChildren().add(button); // Thêm button với 1 quiz vào quizbox nma k biết add action
         }
     }

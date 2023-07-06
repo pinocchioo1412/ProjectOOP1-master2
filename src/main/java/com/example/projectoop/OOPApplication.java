@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 
@@ -15,7 +16,7 @@ public class OOPApplication extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Giaodien1.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GiaoDien1.fxml")));
             Scene scene1 = new Scene(root);
             stage.setScene(scene1);
             stage.show();
@@ -25,7 +26,7 @@ public class OOPApplication extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch();
     }
 

@@ -114,14 +114,14 @@ public class ControllerCreateQuiz {
         });
     }
     public void Create (ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Giaodien1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     public void cancelClickEvent (ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Giaodien1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -149,7 +149,7 @@ public class ControllerCreateQuiz {
     void create(ActionEvent event) {
         try {
             Stage ag0r1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Giaodien1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GiaoDien1.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             ag0r1.setScene(scene);
