@@ -28,6 +28,9 @@ public class OOPApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch();
+        ReadTextFile abc= new ReadTextFile();
+        abc.readfile();
+
     }
 
 }
