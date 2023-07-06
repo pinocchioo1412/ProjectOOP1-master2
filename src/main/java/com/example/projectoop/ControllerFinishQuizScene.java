@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.sql.*;
@@ -21,18 +22,40 @@ public class ControllerFinishQuizScene {
     @FXML
     private AnchorPane navigation;
 
-    public void initialize(){
-        Pane questionPane = createQuestionPane(1);
-        questionPane.setLayoutY(150);
-        questionPane.setLayoutX(100);
-        Pane numberPane = createQuestionButton(1);
-        numberPane.setLayoutX(20);
-        numberPane.setLayoutY(50);
-        Pane NumberPane = createQuestionNumberPane(1);
-        NumberPane.setLayoutX(10);
-        NumberPane.setLayoutY(150);
-        question.getChildren().addAll(questionPane,NumberPane);
-        navigation.getChildren().add(numberPane);
+    public void initialize() throws SQLException {
+        String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+        String USER_NAME = "oop";
+        String PASSWORD = "123";
+        String query1 ="SELECT question_id FROM question";
+        Statement stm1 =null;
+        Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+        stm1 = conn.createStatement();
+        ResultSet rs = stm1.executeQuery(query1);
+        int i=1;
+        double h=150;
+        while (rs.next()) {
+            int question_id = rs.getInt("question_id");
+            Pane questionPane = createQuestionPane(question_id);
+            questionPane.setLayoutY(h);
+            questionPane.setLayoutX(100);
+            Pane NumberPane = createQuestionNumberPane(i);
+            NumberPane.setLayoutX(10);
+            NumberPane.setLayoutY(h);
+            Pane numberPane = createQuestionButton(i);
+            numberPane.setLayoutX(20 + (i - 1) * 30);
+            numberPane.setLayoutY(50 + ((i - 1) / 5) * 50);
+            question.getChildren().addAll(questionPane, NumberPane);
+            Pane answerPane=new Pane();
+            answerPane.setStyle("-fx-background-color: yellow");
+            answerPane.setPrefSize(600, 30);
+            answerPane.setLayoutY(h+questionPane.getPrefHeight()+20);
+            answerPane.setLayoutX(100);
+            question.getChildren().add(answerPane);
+            question.setPrefSize(question.getPrefWidth(), question.getPrefHeight() + 70 + questionPane.getPrefHeight());
+            navigation.getChildren().add(numberPane);
+            i++;
+            h = h + 70 + questionPane.getPrefHeight();
+        }
     }
     public Pane createQuestionButton(int x) {
         Pane numberPane = new Pane();
@@ -58,8 +81,7 @@ public class ControllerFinishQuizScene {
 
         return numberPane;
     }
-    public Pane createQuestionPane(int question_id){
-        Pane question_Pane = new Pane();
+    public Pane createQuestionPane(int question_id) throws SQLException{
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "oop";
         String PASSWORD = "123";
@@ -67,50 +89,33 @@ public class ControllerFinishQuizScene {
         String query2="select * from answer where question_id = " +question_id;
         Statement stm1 =null;
         Statement stm2=null;
-        try {
-            // Tạo kết nối
-            Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
-            // Thực hiện các truy vấn SQL
-            stm1 = conn.createStatement();
-            ResultSet rs = stm1.executeQuery(query1);
-
-            double h=0;
-            while (rs.next()) {
-                String question_name = rs.getNString("question_name");
-                Label question = new Label(question_name);
-                question.setPrefSize(550, 50);
-                question.setWrapText(true);
-                question.setLayoutX(20);
-                question.setLayoutY(0);
-                question_Pane.getChildren().add(question);
-                h=h+50;
-            }
+        // Tạo kết nối
+        Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+        // Thực hiện các truy vấn SQL
+        stm1 = conn.createStatement();
+        ResultSet rs = stm1.executeQuery(query1);
+        MultipleChoiceQuestion question = null;
+        while (rs.next()) {
+            String question_name = rs.getNString("question_name");
+            question = new MultipleChoiceQuestion(question_name);
             stm2 = conn.createStatement();
             ResultSet rs2 = stm2.executeQuery(query2);
             while (rs2.next()) {
                 String answer_name = rs2.getNString("answer_name");
-                CheckBox checkBox = new CheckBox();
-                checkBox.setLayoutX(30);
-                checkBox.setLayoutY(h);
-                Label answer = new Label(answer_name);
-                answer.setLayoutX(50);
-                answer.setLayoutY(h);
-                question_Pane.getChildren().addAll(answer, checkBox);
-                h = h + 30;
+                question.addOption(answer_name);
             }
-            question_Pane.setStyle("-fx-background-color: #E7F3F5");
-            question_Pane.setPrefSize(600, h + 50);
-            // Đóng kết nối
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            question.setQuestionPane();
+
         }
-        return question_Pane;
+        // Đóng kết nối
+        conn.close();
+        return question.getQuestion_Pane();
     }
     public Pane createQuestionNumberPane(int x){
         Pane questionNumberPane=new Pane();
         questionNumberPane.setPrefSize(75,100);
         Label question = new Label("Question");
+        question.setTextFill(Color.RED);
         question.setLayoutX(5);
         question.setLayoutY(5);
         Label number = new Label(""+x);
@@ -126,7 +131,7 @@ public class ControllerFinishQuizScene {
         mark.setWrapText(true);
         mark.setLayoutY(50);
         mark.setLayoutX(5);
-        questionNumberPane.setStyle("-fx-border-color: #000000;\n" +
+        questionNumberPane.setStyle("-fx-border-color:  #1E90FF;\n" +
                 "    -fx-border-width: 1 ;\n" +
                 "    -fx-border-style: solid ;");
 

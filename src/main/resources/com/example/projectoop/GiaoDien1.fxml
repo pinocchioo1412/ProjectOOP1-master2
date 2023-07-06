@@ -139,7 +139,7 @@
                      <children>
                         <VBox fx:id="Quizbox" layoutX="34.0" layoutY="40.0" prefHeight="369.0" prefWidth="487.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#switchToAttemptQuizScene" prefHeight="30.0" prefWidth="435.0" style="-fx-background-color: ffffff;" text="Thi thử giữa kì môn Công nghệ">
+                              <Button mnemonicParsing="false" onAction="#switchToAttemptQuizScene" style="-fx-background-color: ffffff;" text="Thi thử giữa kì môn Công nghệ">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -147,9 +147,6 @@
                                        </image>
                                     </ImageView>
                                  </graphic>
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
                               </Button>
                            </children>
                         </VBox>
