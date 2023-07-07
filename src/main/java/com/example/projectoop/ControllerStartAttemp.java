@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.EventObject;
 
 public class ControllerStartAttemp {
@@ -32,12 +36,21 @@ public class ControllerStartAttemp {
         this.stage = stage;
     }
 
-    public void StartClick(ActionEvent event) throws IOException {
+    public void StartClick(ActionEvent event) throws IOException, SQLException {
         for (Window window : Stage.getWindows()) {
             if (window instanceof Stage) {
                 ((Stage) window).close();
             }
         }
+        String url = "jdbc:sqlserver://" + "localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+        String user = "oop";
+        String password = "123";
+        Connection connection = DriverManager.getConnection(url, user, password);
+        String sql = "update quiz_in_progress set start_time=CURRENT_TIMESTAMP";
+        Statement stm2= null;
+        stm2 = connection.createStatement();
+        stm2.executeUpdate(sql);
+        connection.close();
         Parent root = FXMLLoader.load(getClass().getResource("DoingQuizScene.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

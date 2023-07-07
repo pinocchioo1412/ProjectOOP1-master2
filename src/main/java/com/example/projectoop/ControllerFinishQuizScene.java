@@ -12,15 +12,18 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ControllerFinishQuizScene {
     private Stage stage;
     private Scene scene;
-    private Node anyNode;
+
     @FXML
     private AnchorPane question;
     @FXML
     private AnchorPane navigation;
+
+    public ArrayList<MultipleChoiceQuestion> questions= new ArrayList<MultipleChoiceQuestion>();
 
     public void initialize() throws SQLException {
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
@@ -57,36 +60,12 @@ public class ControllerFinishQuizScene {
             h = h + 70 + questionPane.getPrefHeight();
         }
     }
-    public Pane createQuestionButton(int x) {
-        Pane numberPane = new Pane();
-        numberPane.setPrefSize(20, 40);
-        numberPane.setStyle("-fx-border-color: #000000;\n" +
-                "    -fx-border-width: 1 ;\n" +
-                "    -fx-border-style: solid ;");
-
-
-        Label number = new Label();
-        number.setText("" + x);
-        number.setLayoutY(0);
-        number.setLayoutX(7);
-
-        Button button = new Button();
-        button.setPrefSize(18, 10);
-        button.setStyle("-fx-background-color: grey");
-
-        button.setLayoutY(14);
-        button.setLayoutX(1);
-
-        numberPane.getChildren().addAll(number, button);
-
-        return numberPane;
-    }
     public Pane createQuestionPane(int question_id) throws SQLException{
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "oop";
         String PASSWORD = "123";
-        String query1 ="SELECT question_name FROM question WHERE question_id ="+question_id;
-        String query2="select * from answer where question_id = " +question_id;
+        String query1 ="SELECT QUESTION_NAME FROM question WHERE QUESTION_ID ="+question_id;
+        String query2="select * from answer where QUESTION_ID = " +question_id;
         Statement stm1 =null;
         Statement stm2=null;
         // Tạo kết nối
@@ -109,7 +88,32 @@ public class ControllerFinishQuizScene {
         }
         // Đóng kết nối
         conn.close();
+        questions.add(question);
         return question.getQuestion_Pane();
+    }
+    public Pane createQuestionButton(int x) {
+        Pane numberPane = new Pane();
+        numberPane.setPrefSize(20, 40);
+        numberPane.setStyle("-fx-border-color: #000000;\n" +
+                "    -fx-border-width: 1 ;\n" +
+                "    -fx-border-style: solid ;");
+
+
+        Label number = new Label();
+        number.setText("" + x);
+        number.setLayoutY(0);
+        number.setLayoutX(7);
+
+        Button button = new Button();
+        button.setPrefSize(18, 10);
+        button.setStyle("-fx-background-color: white");
+
+        button.setLayoutY(14);
+        button.setLayoutX(1);
+
+        numberPane.getChildren().addAll(number, button);
+
+        return numberPane;
     }
     public Pane createQuestionNumberPane(int x){
         Pane questionNumberPane=new Pane();

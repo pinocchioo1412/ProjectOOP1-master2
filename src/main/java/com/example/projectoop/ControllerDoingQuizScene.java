@@ -6,11 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -22,6 +24,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+
 import javafx.scene.paint.Color;
 public class ControllerDoingQuizScene {
     private Stage stage;
@@ -222,39 +226,59 @@ public class ControllerDoingQuizScene {
         return questionNumberPane;
     }
     public void setFinish(ActionEvent event) throws SQLException {
-        MultipleChoiceQuestion question1;
-        questions.size();
-        String url = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-        String user = "oop";
-        String password = "123";
-        Connection connection = DriverManager.getConnection(url,user,password);
-        for (int i = 0; i < questions.size(); i++) {
-            String answer=questions.get(i).getSelectedAnswer();
-            int answer_id=questions.get(i).getQuestion_id();
-            String sql ="select answer_grade from answer where answer_text like '" + answer+"'and question_id ="+answer_id;
-            Statement stm1 = null;
-            stm1=connection.createStatement();
-            ResultSet rs = stm1.executeQuery(sql);
-            while (rs.next()) {
-                int x = rs.getInt("answer_grade");
-                if (x>0){
-                    this.grade++;
-                }
-            }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Nộp Bài");
+        alert.setHeaderText("Finish");
+        alert.setContentText("Do you finish thí quiz");
 
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get()== buttonTypeYes) {
+            MultipleChoiceQuestion question1;
+            questions.size();
+            String url = "jdbc:sqlserver://" + "localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+            String user = "oop";
+            String password = "123";
+            Connection connection = DriverManager.getConnection(url, user, password);
+            for (int i = 0; i < questions.size(); i++) {
+                String answer = questions.get(i).getSelectedAnswer();
+                int answer_id = questions.get(i).getQuestion_id();
+                String sql = "select answer_grade from answer where answer_text like '" + answer + "'and question_id =" + answer_id;
+                Statement stm1 = null;
+                stm1 = connection.createStatement();
+                ResultSet rs = stm1.executeQuery(sql);
+                while (rs.next()) {
+                    int x = rs.getInt("answer_grade");
+                    if (x > 0) {
+                        this.grade++;
+                    }
+                }
+
+            }
+            String sql = "update quiz_in_progress set grade ="+this.grade+", end_time=CURRENT_TIMESTAMP";
+            Statement stm2= null;
+            stm2 = connection.createStatement();
+            stm2.executeUpdate(sql);
+            connection.close();
+            Parent root;
+            try {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FinishQuizScene.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage = (Stage) myLabel.getScene().getWindow();
+            Scene scene1 = new Scene(root);
+            stage.setScene(scene1);
+            stage.show();
         }
-        System.out.println(grade);
-        connection.close();
-        Parent root;
-        try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FinishQuizScene.fxml")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) myLabel.getScene().getWindow();
-        Scene scene1 = new Scene(root);
-        stage.setScene(scene1);
-        stage.show();
+        else
+            System.out.println("Code for cancel");
+
     }
 }
 
