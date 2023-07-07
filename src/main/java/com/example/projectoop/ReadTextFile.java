@@ -5,19 +5,22 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.sql.SQLException;
+
 public class ReadTextFile {
+    public  String DB_URL ="jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "pinocchio1412" + ";encrypt=true;trustServerCertificate=true";
+    public  String DB_USER = "sa";
+    public  String DB_PASSWORD = "pinocchio1412";
+
     public List<String> questions = new ArrayList<>();
     public List<String> answers = new ArrayList<>();
-    File file = new File("C:\\Users\\admin\\Downloads\\test1.txt"); // Thay đổi đường dẫn tới file.txt
+    public File file = new File("C:\\Users\\admin\\Downloads\\test1.txt"); // file txt
     public void readfile() {
         try {
             Scanner scanner = new Scanner(file);
-//            List<String> questions = new ArrayList<>();
-//            List<String> answers = new ArrayList<>();
             StringBuilder currentQuestion = new StringBuilder();
             StringBuilder currentAnswer = new StringBuilder();
 
@@ -25,7 +28,6 @@ public class ReadTextFile {
                 String line = scanner.nextLine();
 
                 if (line.matches("\\d+\\. .*")) {
-                    // Đây là câu hỏi mới
                     if (currentQuestion.length() > 0) {
                         questions.add(currentQuestion.toString());
                         answers.add(currentAnswer.toString());
@@ -34,10 +36,8 @@ public class ReadTextFile {
                     }
                     currentQuestion.append(line).append("\n");
                 } else if (line.startsWith("ANSWER:")) {
-                    // Đây là đáp án
                     currentAnswer.append(line.substring(8)).append("\n");
                 } else {
-                    // Câu hỏi hoặc đáp án có nhiều dòng
                     if (currentQuestion.length() > 0) {
                         currentQuestion.append(line).append("\n");
                     } else if (currentAnswer.length() > 0) {
@@ -46,51 +46,56 @@ public class ReadTextFile {
                 }
             }
 
-            // Lưu câu hỏi và đáp án cuối cùng
             if (currentQuestion.length() > 0) {
                 questions.add(currentQuestion.toString());
                 answers.add(currentAnswer.toString());
             }
 
-//            // In ra tất cả câu hỏi và đáp án
-//            for (int i = 0; i < questions.size(); i++) {
-//                System.out.println("Câu hỏi " + (i + 1) + ":");
-//                System.out.println(questions.get(i));
-//                System.out.println("Đáp án " + (i + 1) + ":");
-//                System.out.println(answers.get(i));
-//                System.out.println();
-//            }
+            // Print all questions and answers
+            for (int i = 0; i < questions.size(); i++) {
+                System.out.println("Câu hỏi " + (i + 1) + ":");
+                System.out.println(questions.get(i));
+                System.out.println("Đáp án " + (i + 1) + ":");
+                System.out.println(answers.get(i));
+                System.out.println();
+            }
 
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        // Kết nối đến cơ sở dữ liệu
-        String url = "jdbc:sqlsever://localhost:1433/pinocchio1412";
-        String username = "sa ";
-        String password = "pinocchio1412";
+    }
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            // Chuẩn bị truy vấn INSERT
-            String sql = "INSERT INTO your_table (QUESTION_NAME, ANSWER_TEXT) VALUES (?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-
-            // Lặp qua danh sách câu hỏi và đáp án và thêm vào cơ sở dữ liệu
+    public void pushToDatabase() {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             for (int i = 0; i < questions.size(); i++) {
-                String question = questions.get(i);
-                String answer = answers.get(i);
+                String questionText = questions.get(i).substring(3); //
+                String answerText = answers.get(i);
 
-                // Đặt giá trị cho tham số truy vấn
-                statement.setString(1, question);
-                statement.setString(2, answer);
+                // tính điểm
+                int answerGrade = 0;
+                String firstChar = answerText.trim().substring(0, 1);
+                if (firstChar.equalsIgnoreCase(answers.get(i).substring(8, 9))) {
+                    answerGrade = 100;
+                }
 
-                // Thực thi truy vấn
-                statement.executeUpdate();
+                // chèn câu hỏi vào bảng question
+                String insertQuestionQuery = "INSERT INTO QUESTION (QUESTION_ID, QUESTION_TEXT) VALUES (?, ?)";
+                PreparedStatement questionStatement = connection.prepareStatement(insertQuestionQuery);
+                questionStatement.setInt(100, i + 100); // cho QUESTION_ID tăng từ 100
+                questionStatement.setString(2, questionText);
+                questionStatement.executeUpdate();
+
+                // chèn đáp án vào bảng question
+                String insertAnswerQuery = "INSERT INTO ANSWER (ANSWER_ID, ANSWER_TEXT, ANSWER_GRADE) VALUES (?, ?, ?)";
+                PreparedStatement answerStatement = connection.prepareStatement(insertAnswerQuery);
+                answerStatement.setInt(100, i + 100); // cho ANSWER_ID tăng từ 100
+                answerStatement.setString(2, answerText);
+                answerStatement.setInt(3, answerGrade);
+                answerStatement.executeUpdate();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

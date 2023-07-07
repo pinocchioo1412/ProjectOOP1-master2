@@ -86,11 +86,9 @@ public class CheckFileFormat {
                 alert.setContentText("Success: " + numberQuestions);
                 alert.show();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
 

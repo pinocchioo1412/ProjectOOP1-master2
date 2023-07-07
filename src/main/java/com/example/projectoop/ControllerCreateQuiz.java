@@ -113,13 +113,13 @@ public class ControllerCreateQuiz {
             }
         });
     }
-    public void Create (ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void Create (ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     public void cancelClickEvent (ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -17,7 +17,7 @@ public class OOPApplication extends Application {
     public void start(Stage stage) throws Exception {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Giaodien1.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GiaoDien1.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
@@ -36,7 +36,6 @@ public class OOPApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch();
-
 
     }
 }
