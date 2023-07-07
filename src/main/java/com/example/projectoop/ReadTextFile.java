@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReadTextFile {
-    public  String DB_URL ="jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
-    public  String DB_USER = "oop";
-    public  String DB_PASSWORD = "123";
+    public  String DB_URL ="jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "pinocchio1412" + ";encrypt=true;trustServerCertificate=true";
+    public  String DB_USER = "sa";
+    public  String DB_PASSWORD = "pinocchio1412";
 
     public List<String> questions = new ArrayList<>();
     public List<String> answers = new ArrayList<>();
-    public File file = new File("C:\\Users\\DELL\\Downloads\\test1.txt"); // file txt
+    public File file = new File("C:\\Users\\admin\\Downloads\\test1.txt"); // file txt
     public void readfile() {
         try {
             Scanner scanner = new Scanner(file);
@@ -66,30 +66,36 @@ public class ReadTextFile {
         }
     }
 
-    public void pushToDatabase() throws SQLException {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    public void pushToDatabase() {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             for (int i = 0; i < questions.size(); i++) {
                 String questionText = questions.get(i).substring(3); //
                 String answerText = answers.get(i);
 
                 // tính điểm
                 int answerGrade = 0;
-
+                String firstChar = answerText.trim().substring(0, 1);
+                if (firstChar.equalsIgnoreCase(answers.get(i).substring(8, 9))) {
+                    answerGrade = 100;
+                }
 
                 // chèn câu hỏi vào bảng question
-                String insertQuestionQuery = "INSERT INTO QUESTION (QUESTION_ID, QUESTION_NAME) VALUES (?, ?)";
+                String insertQuestionQuery = "INSERT INTO QUESTION (QUESTION_ID, QUESTION_TEXT) VALUES (?, ?)";
                 PreparedStatement questionStatement = connection.prepareStatement(insertQuestionQuery);
-                questionStatement.setInt(1, i + 100); // cho QUESTION_ID tăng từ 100
+                questionStatement.setInt(100, i + 100); // cho QUESTION_ID tăng từ 100
                 questionStatement.setString(2, questionText);
                 questionStatement.executeUpdate();
 
                 // chèn đáp án vào bảng question
                 String insertAnswerQuery = "INSERT INTO ANSWER (ANSWER_ID, ANSWER_TEXT, ANSWER_GRADE) VALUES (?, ?, ?)";
                 PreparedStatement answerStatement = connection.prepareStatement(insertAnswerQuery);
-                answerStatement.setInt(1, i + 100); // cho ANSWER_ID tăng từ 100
+                answerStatement.setInt(100, i + 100); // cho ANSWER_ID tăng từ 100
                 answerStatement.setString(2, answerText);
                 answerStatement.setInt(3, answerGrade);
                 answerStatement.executeUpdate();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
