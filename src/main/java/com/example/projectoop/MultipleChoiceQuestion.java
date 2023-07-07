@@ -12,10 +12,12 @@ public class MultipleChoiceQuestion {
     private Label question;
     private ToggleGroup toggleGroup;
     private Pane question_Pane;
+    private int question_id;
 
     private double h;
 
-    public MultipleChoiceQuestion(String question_name) {
+    public MultipleChoiceQuestion(String question_name, int question_id) {
+        this.question_id=question_id;
         question = new Label(question_name);
         toggleGroup = new ToggleGroup();
         question_Pane = new Pane();
@@ -57,5 +59,8 @@ public class MultipleChoiceQuestion {
             return selectedOption.getText();
         }
         return "Chưa chọn";
+    }
+    public int getQuestion_id(){
+        return this.question_id;
     }
 }

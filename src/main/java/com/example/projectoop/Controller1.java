@@ -114,7 +114,7 @@ public class Controller1  {
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "oop";
         String PASSWORD = "123";
-        String query ="SELECT quiz_name FROM quiz";
+        String query ="SELECT quiz_name, quiz_id FROM quiz";
         Statement stm =null;
         try {
             // Tạo kết nối
@@ -124,6 +124,7 @@ public class Controller1  {
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()){
                 String quiz_name=rs.getNString("quiz_name");
+                final int quiz_id=rs.getInt("quiz_id");
                 Button button = new Button(quiz_name);
                 ImageView imageView = new ImageView(new Image("file:src/main/resources/Image/iconchuv.png"));
                 imageView.setFitHeight(21);
@@ -141,6 +142,21 @@ public class Controller1  {
                     scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+
+                    String url = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+                    String user = "oop";
+                    String password = "123";
+                    String sql = "INSERT INTO quiz_in_progress (quiz_progress_id, quiz_id, start_time, end_time) VALUES ("+quiz_id+ ","+quiz_id+",null,null)";
+                    // Tạo prepared statement để thực thi câu truy vấn
+                    try {
+                        Connection connection = DriverManager.getConnection(url,user,password);
+                        Statement stm1 = null;
+                        stm1=connection.createStatement();
+                        stm1.executeQuery(sql);
+                        connection.close();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
                 Quizbox.getChildren().add(button);
             }

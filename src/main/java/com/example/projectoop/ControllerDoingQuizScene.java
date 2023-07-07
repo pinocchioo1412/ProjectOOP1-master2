@@ -17,8 +17,10 @@ import javafx.stage.Window;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javafx.scene.paint.Color;
 public class ControllerDoingQuizScene {
@@ -37,16 +39,19 @@ public class ControllerDoingQuizScene {
     @FXML
     private Button finish;
 
-    public ArrayList<MultipleChoiceQuestion>  questions = questions = new ArrayList<MultipleChoiceQuestion>();
+    public ArrayList<MultipleChoiceQuestion>  questions= new ArrayList<MultipleChoiceQuestion>();
+
+    public List<Integer> choice_answer= new ArrayList<>() ;
 
     private int countdownSeconds;
 
+    private int grade=0;
     public void setCountdownSeconds(int x){
         this.countdownSeconds=x;
     }
 
     public void initialize() throws IOException, SQLException {
-        int x=8;
+        int x=60;
         setCountdownSeconds(x);
         timerLabel.setText(formatTime(countdownSeconds));
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
@@ -56,6 +61,34 @@ public class ControllerDoingQuizScene {
             }
             else{
                 Parent root = null;
+                MultipleChoiceQuestion question1;
+                questions.size();
+                String url = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+                String user = "oop";
+                String password = "123";
+                Connection connection = null;
+                try {
+                    connection = DriverManager.getConnection(url,user,password);
+                    for (int i = 0; i < questions.size(); i++) {
+                        String answer = questions.get(i).getSelectedAnswer();
+                        int answer_id = questions.get(i).getQuestion_id();
+                        String sql = "select answer_grade from answer where answer_text like '" + answer + "'and question_id =" + answer_id;
+                        Statement stm1 = null;
+                        stm1 = connection.createStatement();
+                        ResultSet rs = stm1.executeQuery(sql);
+                        while (rs.next()) {
+                            int n = rs.getInt("answer_grade");
+                            if (n > 0) {
+                                this.grade++;
+                            }
+                        }
+                    }
+                    System.out.println(grade);
+                    connection.close();
+                }
+                catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 try {
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FinishQuizScene.fxml")));
                 } catch (IOException e) {
@@ -73,7 +106,7 @@ public class ControllerDoingQuizScene {
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "oop";
         String PASSWORD = "123";
-        String query1 ="SELECT question_id FROM question";
+        String query1 ="SELECT question_id FROM question WHERE QUESTION_ID IN (SELECT QUESTION_ID FROM QUIZ_QUESTION WHERE QUIZ_ID IN (SELECT QUIZ_ID FROM QUIZ_IN_PROGRESS))";
         Statement stm1 =null;
         Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
         stm1 = conn.createStatement();
@@ -146,7 +179,7 @@ public class ControllerDoingQuizScene {
             MultipleChoiceQuestion question = null;
             while (rs.next()) {
                 String question_name = rs.getNString("question_name");
-                question = new MultipleChoiceQuestion(question_name);
+                question = new MultipleChoiceQuestion(question_name,question_id);
                 stm2 = conn.createStatement();
                 ResultSet rs2 = stm2.executeQuery(query2);
                 while (rs2.next()) {
@@ -188,12 +221,40 @@ public class ControllerDoingQuizScene {
         questionNumberPane.getChildren().addAll(question,number, mark, text);
         return questionNumberPane;
     }
-    public void setFinish(ActionEvent event){
+    public void setFinish(ActionEvent event) throws SQLException {
         MultipleChoiceQuestion question1;
         questions.size();
+        String url = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+        String user = "oop";
+        String password = "123";
+        Connection connection = DriverManager.getConnection(url,user,password);
         for (int i = 0; i < questions.size(); i++) {
-            System.out.println(questions.get(i).getSelectedAnswer());
+            String answer=questions.get(i).getSelectedAnswer();
+            int answer_id=questions.get(i).getQuestion_id();
+            String sql ="select answer_grade from answer where answer_text like '" + answer+"'and question_id ="+answer_id;
+            Statement stm1 = null;
+            stm1=connection.createStatement();
+            ResultSet rs = stm1.executeQuery(sql);
+            while (rs.next()) {
+                int x = rs.getInt("answer_grade");
+                if (x>0){
+                    this.grade++;
+                }
+            }
+
         }
+        System.out.println(grade);
+        connection.close();
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FinishQuizScene.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage) myLabel.getScene().getWindow();
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
     }
 }
 

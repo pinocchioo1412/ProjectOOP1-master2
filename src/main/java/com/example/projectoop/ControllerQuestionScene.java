@@ -58,7 +58,7 @@ public class ControllerQuestionScene {
                 questionBank.lookupAll("*").forEach(node -> {
                     questionBank.getChildren().remove(node);
                 });
-                String query1 ="SELECT QUESTION_NAME FROM QUESTION WHERE CATEGORY_ID IN" +
+                String query1 ="SELECT QUESTION_NAME, QUESTION_ID FROM QUESTION WHERE CATEGORY_ID IN" +
                         "(SELECT CATEGORY_ID FROM CATEGORY WHERE CATEGORY_NAME='"+selectedCategory+"')";
                 Statement stm1 =null;
                 try {
@@ -66,7 +66,8 @@ public class ControllerQuestionScene {
                     ResultSet rs1=stm1.executeQuery(query1);
                     while(rs1.next()){
                         String question_name = rs1.getNString("QUESTION_NAME");
-                        Pane question1 =createQuestionPane(question_name);
+                        int question_id = rs1.getInt("QUESTION_ID");
+                        Pane question1 =createQuestionPane(question_name,question_id);
                         questionBank.setPrefSize(questionBank.getMaxWidth(),questionBank.getHeight()+30);
                         questionBank.getChildren().add(question1);
                         question1.setLayoutY(this.height);
@@ -109,7 +110,7 @@ public class ControllerQuestionScene {
         stage.setScene(scene);
         stage.show();
     }
-    public Pane createQuestionPane(String s){
+    public Pane createQuestionPane(String s, int n){
         Pane question = new Pane();
         question.setPrefSize(960, 30);
         question.setStyle("-fx-background-color:  #ffffff;");
@@ -117,12 +118,13 @@ public class ControllerQuestionScene {
         CheckBox checkBox = new CheckBox();
         checkBox.setLayoutX(10);
         checkBox.setLayoutY(5);
+        checkBox.setText(""+n);
 
         Label questionName = new Label();
         questionName.setText(s);
         questionName.setPrefSize(850, 25);
         questionName.setLayoutX(50);
-        questionName.setLayoutY(0);
+        questionName.setLayoutY(5);
 
         Button edit = new Button();
         edit.setLayoutX(900);

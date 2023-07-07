@@ -97,7 +97,7 @@ public class ControllerFinishQuizScene {
         MultipleChoiceQuestion question = null;
         while (rs.next()) {
             String question_name = rs.getNString("question_name");
-            question = new MultipleChoiceQuestion(question_name);
+            question = new MultipleChoiceQuestion(question_name,question_id);
             stm2 = conn.createStatement();
             ResultSet rs2 = stm2.executeQuery(query2);
             while (rs2.next()) {
