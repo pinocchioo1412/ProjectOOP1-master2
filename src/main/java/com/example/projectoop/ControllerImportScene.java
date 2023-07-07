@@ -85,7 +85,15 @@ public class ControllerImportScene  {
     @FXML
     void Import(ActionEvent event) {
         if (file.getName().endsWith(".txt") || file.getName().endsWith(".docx")) {
-            CheckFileFormat.getInstance().checkFormat(file.getPath());
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("Success");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Success");
+            alert1.show();
+            ReadTextFile docfile = new ReadTextFile();
+            docfile.file = file;
+            docfile.pushToDatabase();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

@@ -17,7 +17,8 @@ public class ReadTextFile {
 
     public List<String> questions = new ArrayList<>();
     public List<String> answers = new ArrayList<>();
-    public File file = new File("C:\\Users\\admin\\Downloads\\test1.txt"); // file txt
+    public File file = new File("");
+//    public File file = new File("C:\\Users\\admin\\Downloads\\test1.txt"); // file txt
     public void readfile() {
         try {
             Scanner scanner = new Scanner(file);
@@ -52,13 +53,13 @@ public class ReadTextFile {
             }
 
             // Print all questions and answers
-            for (int i = 0; i < questions.size(); i++) {
-                System.out.println("Câu hỏi " + (i + 1) + ":");
-                System.out.println(questions.get(i));
-                System.out.println("Đáp án " + (i + 1) + ":");
-                System.out.println(answers.get(i));
-                System.out.println();
-            }
+//            for (int i = 0; i < questions.size(); i++) {
+//                System.out.println("Câu hỏi " + (i + 1) + ":");
+//                System.out.println(questions.get(i));
+//                System.out.println("Đáp án " + (i + 1) + ":");
+//                System.out.println(answers.get(i));
+//                System.out.println();
+//            }
 
             scanner.close();
         } catch (FileNotFoundException e) {
