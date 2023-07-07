@@ -27,8 +27,7 @@ public class OOPApplication extends Application {
             controller.initialize();
 
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -40,5 +39,5 @@ public class OOPApplication extends Application {
 
 
     }
-
 }
+

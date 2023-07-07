@@ -15,31 +15,32 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="22.0" layoutY="116.0" prefHeight="577.0" prefWidth="865.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
-        <content>
-          <AnchorPane fx:id="questionBank" minHeight="0.0" minWidth="0.0" prefHeight="645.0" prefWidth="840.0">
-               <children>
-                  <Label layoutX="10.0" layoutY="20.0" text="Select a category :">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox layoutX="134.0" layoutY="19.0" prefWidth="150.0" />
-                  <Label layoutX="10.0" layoutY="77.0" text="Search option" textFill="DODGERBLUE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <CheckBox layoutX="10.0" layoutY="105.0" mnemonicParsing="false" text="Also show question from subcategories" />
-                  <CheckBox layoutX="10.0" layoutY="125.0" mnemonicParsing="false" text="Also show old questions" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
       <Button mnemonicParsing="false" style="-fx-background-color: #1E90FF;" text="ADD SELECTED QUESTION TO THE QUIZ" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Button>
+      <AnchorPane layoutX="20.0" layoutY="47.0" minHeight="0.0" minWidth="0.0" prefHeight="645.0" prefWidth="840.0">
+         <children>
+            <Label layoutX="10.0" layoutY="20.0" text="Select a category :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="CategoryBox" layoutX="134.0" layoutY="19.0" prefWidth="150.0" />
+            <Label layoutX="10.0" layoutY="77.0" text="Search option" textFill="DODGERBLUE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="10.0" layoutY="105.0" mnemonicParsing="false" text="Also show question from subcategories" />
+            <CheckBox layoutX="10.0" layoutY="125.0" mnemonicParsing="false" text="Also show old questions" />
+            <ScrollPane layoutX="9.0" layoutY="157.0" prefHeight="450.0" prefWidth="828.0">
+              <content>
+                <AnchorPane fx:id="questionBank" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="820.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

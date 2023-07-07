@@ -55,8 +55,20 @@ public class ControllerDoingQuizScene {
     }
 
     public void initialize() throws IOException, SQLException {
-        int x=60;
-        setCountdownSeconds(x);
+        String url1 = "jdbc:sqlserver://" + "localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+        String user1 = "oop";
+        String password1 = "123";
+        Connection conn1= DriverManager.getConnection(url1, user1, password1);
+        String sql1 = "select quiz_name,DATEPART(minute, time_limit)+60*DATEPART(hour, time_limit) as time_limit from quiz where quiz_id in (select quiz_id from quiz_in_progress)";
+        Statement stm4 = null;
+        stm4 = conn1.createStatement();
+        ResultSet rs4 = stm4.executeQuery(sql1);
+        while (rs4.next()) {
+            int n = rs4.getInt("time_limit");
+            setCountdownSeconds(n*60);
+        }
+        conn1.close();
+        int x=this.countdownSeconds;
         timerLabel.setText(formatTime(countdownSeconds));
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             countdownSeconds--;
@@ -161,7 +173,7 @@ public class ControllerDoingQuizScene {
         button.setPrefSize(18, 10);
         button.setStyle("-fx-background-color: white");
 
-        button.setLayoutY(14);
+        button.setLayoutY(13);
         button.setLayoutX(1);
 
         numberPane.getChildren().addAll(number, button);

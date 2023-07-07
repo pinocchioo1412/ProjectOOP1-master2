@@ -148,9 +148,9 @@ public class ControllerFinishQuizScene {
 
         Button button = new Button();
         button.setPrefSize(18, 10);
-        button.setStyle("-fx-background-color: white");
+        button.setStyle("-fx-background-color: grey");
 
-        button.setLayoutY(14);
+        button.setLayoutY(13);
         button.setLayoutX(1);
 
         numberPane.getChildren().addAll(number, button);

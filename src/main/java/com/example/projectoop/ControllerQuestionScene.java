@@ -124,7 +124,7 @@ public class ControllerQuestionScene {
         questionName.setText(s);
         questionName.setPrefSize(850, 25);
         questionName.setLayoutX(50);
-        questionName.setLayoutY(5);
+        questionName.setLayoutY(2);
 
         Button edit = new Button();
         edit.setLayoutX(900);

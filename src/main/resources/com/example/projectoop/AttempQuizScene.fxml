@@ -52,7 +52,7 @@
                <children>
                   <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
-                        <Label layoutX="28.0" layoutY="21.0" text="Thi thử giữa kì môn Công nghệ" textFill="RED">
+                        <Label fx:id="quizName" layoutX="28.0" layoutY="21.0" text="Thi thử giữa kì môn Công nghệ" textFill="RED">
                            <font>
                               <Font name="Times New Roman" size="24.0" />
                            </font>
@@ -66,7 +66,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label layoutX="749.0" layoutY="53.0" text="Time limit: 1 hour" />
+                        <Label layoutX="749.0" layoutY="53.0" text="Time limit: " />
                         <Label layoutX="735.0" layoutY="82.0" text="Grading method: Last attempt" />
                         <Label layoutX="28.0" layoutY="115.0" text="Summary of your previous attempt" textFill="RED">
                            <font>
@@ -78,6 +78,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Button>
+                        <Label fx:id="timeLimit" layoutX="808.0" layoutY="53.0" text="Label" />
                      </children>
                   </Pane>
                   <AnchorPane layoutX="2.0" layoutY="152.0" prefHeight="265.0" prefWidth="998.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="151.0">

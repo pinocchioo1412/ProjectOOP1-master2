@@ -111,6 +111,9 @@ public class Controller1  {
                 MenuClose.setVisible(false);
             });
         });
+        Quizbox.lookupAll("*").forEach(node -> {
+            Quizbox.getChildren().remove(node);
+        });
         String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
         String USER_NAME = "oop";
         String PASSWORD = "123";
