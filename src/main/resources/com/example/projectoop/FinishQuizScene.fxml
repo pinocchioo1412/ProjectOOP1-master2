@@ -100,7 +100,10 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="148.0" layoutY="20.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
+                              <Pane layoutX="148.0" layoutY="20.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;">
+                                 <children>
+                                    <Label fx:id="startTime" layoutX="10.0" layoutY="1.0" text="Label" />
+                                 </children></Pane>
                               <Pane layoutX="148.0" layoutY="39.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
                                  <children>
                                     <Label layoutX="40.0" layoutY="1.0" textFill="RED">
@@ -108,6 +111,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
+                                    <Label layoutX="10.0" layoutY="1.0" text="Finished" />
                                  </children>
                               </Pane>
                               <Pane layoutX="148.0" layoutY="114.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
@@ -117,6 +121,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="grade" layoutX="10.0" layoutY="1.0" text="Label" />
                                  </children>
                               </Pane>
                               <Pane layoutX="148.0" layoutY="76.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: efefef;">
@@ -126,10 +131,17 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="timeTaken" layoutX="10.0" layoutY="1.0" text="Label" />
                                  </children>
                               </Pane>
-                              <Pane layoutX="148.0" layoutY="95.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
-                              <Pane layoutX="148.0" layoutY="58.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;" />
+                              <Pane layoutX="148.0" layoutY="95.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;">
+                                 <children>
+                                    <Label fx:id="mark" layoutX="10.0" layoutY="1.0" text="Label" />
+                                 </children></Pane>
+                              <Pane layoutX="148.0" layoutY="58.0" prefHeight="19.0" prefWidth="590.0" style="-fx-background-color: ffffff;">
+                                 <children>
+                                    <Label fx:id="endTime" layoutX="10.0" layoutY="1.0" text="Label" />
+                                 </children></Pane>
                            </children>
                         </AnchorPane>
                     </content>

@@ -131,6 +131,7 @@ public class ControllerDoingQuizScene {
             question.getChildren().addAll(questionPane, NumberPane);
             question.setPrefSize(question.getPrefWidth(),question.getPrefHeight()+20+questionPane.getPrefHeight());
             navigation.getChildren().add(numberPane);
+            finish.setLayoutY(150+((i-1)/5)*50);
             i++;
             h=h+20+questionPane.getPrefHeight();
         }
