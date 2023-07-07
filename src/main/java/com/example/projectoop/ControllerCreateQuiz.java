@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ControllerCreateQuiz {
@@ -48,6 +52,9 @@ public class ControllerCreateQuiz {
     @FXML
     TextField quizname;
     @FXML
+    private TextField timenumber;
+
+    @FXML
     private ImageView namewarning;
     @FXML
     private HBox openthequiz;
@@ -59,6 +66,8 @@ public class ControllerCreateQuiz {
     private CheckBox enable2;
     @FXML
     private CheckBox enable3;
+    public static int counter =15;
+
     public void setDays(){
         this.days.setItems(Days);
         this.days.setValue("1");
@@ -148,6 +157,38 @@ public class ControllerCreateQuiz {
     @FXML
     void create(ActionEvent event) {
         try {
+            String quizName = quizname.getText(); // Lấy giá trị từ trường quizname
+            int timeNumber = Integer.parseInt(timenumber.getText()); // Lấy giá trị từ trường timenumber
+            try {
+                String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+                String DB_USER = "oop";
+                String DB_PASSWORD = "123";
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                String query = "INSERT INTO QUIZ (QUIZ_ID, QUIZ_NAME, TIME_LIMIT) VALUES (?, ?, ?)";
+
+                // Tạo PreparedStatement để thực thi câu truy vấn
+                PreparedStatement statement = connection.prepareStatement(query);
+
+                // Đặt giá trị cho các tham số trong câu truy vấn
+                statement.setInt(1, counter);
+                statement.setString(2, quizName);
+                statement.setTime(3, java.sql.Time.valueOf(timeNumber + ":00:00"));
+
+                // Thực thi câu truy vấn chèn dữ liệu
+                int rowsAffected = statement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("tín chỉ rồi đấy");
+                    counter++;// tăng QUIZ_ID lên 1
+                } else {
+                    System.out.println("lỗi cmnr");
+                }
+
+                // Đóng kết nối và tài nguyên
+                statement.close();
+                connection.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
             Stage ag0r1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GiaoDien1.fxml"));
             Parent root = loader.load();
@@ -155,8 +196,8 @@ public class ControllerCreateQuiz {
             ag0r1.setScene(scene);
             ag0r1.show();
             Controller1 controller = loader.getController();
-            SaveQuiz.addLabelValue(quizname.getText());
             controller.initialize();
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

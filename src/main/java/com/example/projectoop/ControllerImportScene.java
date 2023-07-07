@@ -93,6 +93,7 @@ public class ControllerImportScene  {
             alert1.setHeaderText(null);
             alert1.setContentText("Success");
             textFileReader.file = file;
+            textFileReader.readFile();
             textFileReader.printQuestions();
             textFileReader.pushToDatabase();
             alert1.show();
