@@ -32,8 +32,9 @@ public class ControllerAttempQuiz {
             String QuizName = rs.getNString("quiz_name");
             quizName.setText(QuizName);
             int x = rs.getInt("time_limit");
-            timeLimit.setText(x+" minutes");
+            timeLimit.setText(x + " minutes");
         }
+        conn.close();
     }
     public void switchToCreateQuizScene (ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("CreateQuizScene.fxml"));

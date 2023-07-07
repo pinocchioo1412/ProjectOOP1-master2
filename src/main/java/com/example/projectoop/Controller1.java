@@ -135,7 +135,6 @@ public class Controller1  {
                 button.setGraphic(imageView);
                 button.setStyle("-fx-background-color: white");
                 button.setOnAction(event -> {
-                    Parent root = null;
                     try {
                         root = FXMLLoader.load(getClass().getResource("AttempQuizScene.fxml"));
                     } catch (IOException e) {
@@ -157,12 +156,17 @@ public class Controller1  {
                         stm1=connection.createStatement();
                         stm1.executeQuery(sql);
                         connection.close();
+                        System.out.println(1);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
+
+
                 });
                 Quizbox.getChildren().add(button);
+
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

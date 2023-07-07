@@ -1,7 +1,10 @@
 package com.example.projectoop;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -11,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +37,8 @@ public class ControllerFinishQuizScene {
     private Label mark;
     @FXML
     private Label grade;
+    @FXML
+    private Button finishReview;
 
     public ArrayList<MultipleChoiceQuestion> questions= new ArrayList<MultipleChoiceQuestion>();
 
@@ -98,7 +104,7 @@ public class ControllerFinishQuizScene {
             timeTaken.setText(TimeTake/60+" minutes "+TimeTake%60 +" seconds");
             int Grade = rs2.getInt("grade");
             mark.setText(Grade+"/"+(i-1));
-            float result = (float) Grade / (i-1);
+            float result = (float) 10*Grade / (i-1);
             grade.setText(""+result);
         }
     }
@@ -183,5 +189,29 @@ public class ControllerFinishQuizScene {
 
         questionNumberPane.getChildren().addAll(question,number, mark, text);
         return questionNumberPane;
+    }
+    public void finishReview(ActionEvent event) throws SQLException {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Giaodien1.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+        String USER_NAME = "oop";
+        String PASSWORD = "123";
+        String query = "delete from quiz_in_progress";
+        Statement stm=null;
+        Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+        // Thực hiện các truy vấn SQL
+        stm = conn.createStatement();
+        stm.executeUpdate(query);
+        conn.close();
+
     }
 }

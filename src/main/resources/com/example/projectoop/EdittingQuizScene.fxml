@@ -54,7 +54,7 @@
                <children>
                   <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
-                        <Label layoutX="28.0" layoutY="21.0" text="Edditing quiz: Thi thử giữa kì môn Công nghệ" textFill="RED">
+                        <Label layoutX="28.0" layoutY="21.0" text="Edditing quiz" textFill="RED">
                            <font>
                               <Font name="Times New Roman" size="24.0" />
                            </font>

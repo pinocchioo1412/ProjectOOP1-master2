@@ -260,8 +260,8 @@ public class ControllerDoingQuizScene {
             Connection connection = DriverManager.getConnection(url, user, password);
             for (int i = 0; i < questions.size(); i++) {
                 String answer = questions.get(i).getSelectedAnswer();
-                int answer_id = questions.get(i).getQuestion_id();
-                String sql = "select answer_grade from answer where answer_text like '" + answer + "'and question_id =" + answer_id;
+                int question_id = questions.get(i).getQuestion_id();
+                String sql = "select answer_grade from answer where answer_text like N'" + answer + "'and question_id =" + question_id;
                 Statement stm1 = null;
                 stm1 = connection.createStatement();
                 ResultSet rs = stm1.executeQuery(sql);
@@ -269,6 +269,7 @@ public class ControllerDoingQuizScene {
                     int x = rs.getInt("answer_grade");
                     if (x > 0) {
                         this.grade++;
+                        System.out.println("1");
                     }
                 }
 

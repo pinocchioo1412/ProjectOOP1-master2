@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ControllerCreateQuiz {
@@ -48,6 +50,8 @@ public class ControllerCreateQuiz {
     @FXML
     TextField quizname;
     @FXML
+    private TextField timenumber;
+    @FXML
     private ImageView namewarning;
     @FXML
     private HBox openthequiz;
@@ -59,6 +63,8 @@ public class ControllerCreateQuiz {
     private CheckBox enable2;
     @FXML
     private CheckBox enable3;
+    @FXML
+    private Button createQUIZ;
     public void setDays(){
         this.days.setItems(Days);
         this.days.setValue("1");
@@ -112,6 +118,7 @@ public class ControllerCreateQuiz {
                 namewarning.setVisible(false);
             }
         });
+
     }
 //    public void Create (ActionEvent event) throws IOException {
 //        Parent root = FXMLLoader.load(getClass().getResource("GiaoDien1.fxml"));
@@ -162,5 +169,32 @@ public class ControllerCreateQuiz {
             System.out.println(e.getMessage());
         }
     }
+    public void savequiz(ActionEvent event) throws IOException{
+            try {
+                String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+                String DB_USER = "oop";
+                String DB_PASSWORD = "123";
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
+                String maxQuizIdQuery = "SELECT MAX(QUIZ_ID) FROM QUIZ";
+                PreparedStatement maxQuizIdStatement = connection.prepareStatement(maxQuizIdQuery);
+                ResultSet resultSet = maxQuizIdStatement.executeQuery();
+                int maxQuizId = 100; // cho QUIZ_ID ban đầu là 100
+                if (resultSet.next()) {
+                    int currentMaxQuizId = resultSet.getInt(1);
+                    maxQuizId = currentMaxQuizId + 1; // Tăng QUIZ_ID lên 1
+                }
+
+                String insertQuizQuery = "INSERT INTO QUIZ (QUIZ_ID, QUIZ_NAME, TIME_LIMIT) VALUES (?, ?, ?)";
+                PreparedStatement quizStatement = connection.prepareStatement(insertQuizQuery);
+                quizStatement.setInt(1, maxQuizId);
+                quizStatement.setString(2, quizname.getText());
+                quizStatement.setString(3, timenumber.getText());
+                quizStatement.executeUpdate();
+
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
 }

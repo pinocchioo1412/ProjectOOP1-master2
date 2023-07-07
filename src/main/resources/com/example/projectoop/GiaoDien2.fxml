@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.ControllerQuestionScene">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectoop.Controller2">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -33,7 +30,7 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Label fx:id="MenuBack" layoutX="20.0" layoutY="50.0" text="IT" textFill="RED">
+                  <Label fx:id="mylabel" layoutX="20.0" layoutY="50.0" text="IT" textFill="RED">
                      <font>
                         <Font name="Times New Roman" size="30.0" />
                      </font>
@@ -78,78 +75,6 @@
                </opaqueInsets>
             </AnchorPane>
          </top>
-         <center>
-            <AnchorPane id="Pane" prefHeight="523.0" prefWidth="990.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" stylesheets="@style.css" BorderPane.alignment="CENTER">
-               <children>
-                  <Pane id="Pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="Pane-solid-border" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                     <children>
-                        <Label layoutX="20.0" layoutY="75.0" text="Questions bank" textFill="RED">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="20.0" layoutY="106.0" text="Selcet a category :">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="20.0" layoutY="148.0" text="The default category for questions shared in context">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <CheckBox layoutX="24.0" layoutY="173.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="301.0" selected="true" text="Also show questions from subcategories" textFill="GREY" />
-                        <CheckBox layoutX="24.0" layoutY="197.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="301.0" text="Also show old questions" textFill="GREY" />
-                        <Button layoutX="20.0" layoutY="225.0" mnemonicParsing="false" onAction="#switchToSceneCreateQuestion" style="-fx-background-color: #1E90FF;" text="CREAT A NEW QUESTION" textFill="WHITE">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font>
-                        </Button>
-                        <ComboBox fx:id="CategoryBox" layoutX="144.0" layoutY="104.0" prefWidth="150.0" styleClass="ComboBox" stylesheets="@style.css" />
-                     </children></Pane>
-                  <Pane prefHeight="40.0" prefWidth="955.0" styleClass="settingPane" stylesheets="@style.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
-                     <children>
-                        <Button layoutX="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Export" textFill="ROYALBLUE">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="settingbutton" />
-                              <String fx:value="buttonNotChoose" />
-                           </styleClass>
-                        </Button>
-                        <Button layoutX="200.0" mnemonicParsing="false" onAction="#switchToSceneImport" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Import" textFill="ROYALBLUE">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="settingbutton" />
-                              <String fx:value="buttonNotChoose" />
-                           </styleClass>
-                        </Button>
-                        <Button layoutX="100.0" mnemonicParsing="false" onAction="#switchToSceneCategories" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Categories" textFill="ROYALBLUE">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="settingbutton" />
-                              <String fx:value="buttonNotChoose" />
-                           </styleClass>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@style.css" text="Questions">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="settingbutton" />
-                              <String fx:value="buttonChoose" />
-                           </styleClass>
-                        </Button>
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-         </center>
       </BorderPane>
    </children>
 </AnchorPane>

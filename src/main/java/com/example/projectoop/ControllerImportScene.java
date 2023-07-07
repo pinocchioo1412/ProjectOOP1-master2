@@ -16,6 +16,7 @@ import javafx.scene.input.Dragboard;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class ControllerImportScene  {
@@ -83,9 +84,17 @@ public class ControllerImportScene  {
     }
 
     @FXML
-    void Import(ActionEvent event) {
+    void Import(ActionEvent event) throws SQLException {
         if (file.getName().endsWith(".txt") || file.getName().endsWith(".docx")) {
-            CheckFileFormat.getInstance().checkFormat(file.getPath());
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("Success");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Success");
+            alert1.show();
+            ReadTextFile docfile = new ReadTextFile();
+            docfile.file = file;
+            docfile.pushToDatabase();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

@@ -35,11 +35,8 @@ public class OOPApplication extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        ReadTextFile xyz = new ReadTextFile();
-        xyz.readfile();
-        xyz.pushToDatabase();
-        launch();
 
+        launch();
     }
 }
 
