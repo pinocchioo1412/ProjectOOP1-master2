@@ -9,18 +9,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.geometry.Insets;
+import javafx.application.Application;
 
 import javafx.scene.image.ImageView;
 
-public class ControllerCategories implements Initializable {
+public class ControllerCategories  implements Initializable {
     private Stage stage;
     private Scene scene;
     @FXML
@@ -33,6 +39,9 @@ public class ControllerCategories implements Initializable {
     private TextArea CategoryInfo;
     @FXML
     private TextField Categoryname;
+    @FXML
+    private Button addcategory;
+
 
     public void switchToSceneQuestion(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("QuestionScene.fxml"));
@@ -72,6 +81,25 @@ public class ControllerCategories implements Initializable {
                 IDwarning.setVisible(false);
             }
         });
+    }
+
+    public void saveCategory(ActionEvent event) throws IOException {
+        try {
+            String DB_URL = "jdbc:sqlserver://" +"localhost" + ":1433;DatabaseName=" + "abc" + ";encrypt=true;trustServerCertificate=true";
+            String DB_USER = "oop";
+            String DB_PASSWORD = "123";
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+
+            String insertCategoryQuery = "INSERT INTO CATEGORY (CATEGORY_ID, CATEGORY_NAME) VALUES (?, ?)";
+            PreparedStatement categoryStatement = connection.prepareStatement(insertCategoryQuery);
+            categoryStatement.setString(1, IDnumber.getText());
+            categoryStatement.setString(2, Categoryname.getText());
+            categoryStatement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
