@@ -13,6 +13,7 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.input.Dragboard;
+import com.example.projectoop.ReadTextFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class ControllerImportScene  {
 
     private Stage stage;
     private Scene scene;
+    ReadTextFile textFileReader = new ReadTextFile();
 
     public void switchToSceneQuestion(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("QuestionScene.fxml"));
@@ -86,14 +88,13 @@ public class ControllerImportScene  {
     @FXML
     void Import(ActionEvent event) throws SQLException {
         if (file.getName().endsWith(".txt") || file.getName().endsWith(".docx")) {
-            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Success");
             alert1.setHeaderText(null);
             alert1.setContentText("Success");
+            textFileReader.file = file;
+            textFileReader.printQuestions();
             alert1.show();
-            ReadTextFile docfile = new ReadTextFile();
-            docfile.file = file;
-            docfile.pushToDatabase();
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
