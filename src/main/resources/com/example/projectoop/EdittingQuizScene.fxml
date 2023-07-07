@@ -90,7 +90,7 @@
                         </MenuButton>
                         <ScrollPane layoutX="28.0" layoutY="155.0" prefHeight="370.0" prefWidth="947.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="932.0" />
+                            <AnchorPane fx:id="questionBank" minHeight="0.0" minWidth="0.0" prefHeight="34.0" prefWidth="932.0" />
                           </content>
                         </ScrollPane>
                      </children>
