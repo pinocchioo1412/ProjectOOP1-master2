@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.input.Dragboard;
 import com.example.projectoop.ReadTextFile;
+import com.example.projectoop.CheckFileFormat;
 
 import java.io.File;
 import java.io.IOException;
@@ -88,24 +89,35 @@ public class ControllerImportScene  {
     @FXML
     void Import(ActionEvent event) throws SQLException {
         if (file.getName().endsWith(".txt") || file.getName().endsWith(".docx")) {
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Success");
-            alert1.setHeaderText(null);
-            alert1.setContentText("Success");
-            textFileReader.file = file;
-            textFileReader.readFile();
-            textFileReader.printQuestions();
-            textFileReader.pushToDatabase();
-            alert1.show();
+            String filePath = file.getAbsolutePath();
+            int questionCount = CheckFileFormat.checkAikenFormat(filePath);
 
+            if (questionCount >= 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Success\nSố câu hỏi trong tệp: " + questionCount);
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Tệp không đúng định dạng Aiken.");
+                alert.show();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Wrong format");
+            alert.setContentText("Không có tệp được chọn.");
             alert.show();
         }
-    }
+            textFileReader.file = file;
+            textFileReader.readFile();
+            textFileReader.printQuestions();
+            textFileReader.pushToDatabase();
+
+        }
     @FXML
     void DragFile3(DragEvent event) {
         if (event.getGestureSource() != DropFile && event.getDragboard().hasFiles()) {
